@@ -5,15 +5,114 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie API</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
   </head>
-  <body>
-    <h1>REST API:</h1>
-    <h2>Documentation:</h2>
-    <p>
+  <body class="bg-light">
+    <h1 class="text-center">myFlix movie API(Mann Jaiswal)</h1>
+    <h2 class="text-center">Documentation:</h2>
+    <p class="text-center h4">
       This API provides users with access to information about different movies,
       directors, and genres. It also interacts with a database that stores data
       about different movies. <br />The API is built on Node.js and Express
       application.
     </p>
+    <table class="table table-dark table-bordered">
+      <tr>
+        <th>Request</th>
+        <th>URL</th>
+        <th>HTTP Method</th>
+        <th>Request body data format</th>
+        <th>Response body data format</th>
+      </tr>
+      <tr>
+        <td>Return a list of all the movies</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about all the movies</td>
+      </tr>
+      <tr>
+        <td>Return data about a single movie by title to the user</td>
+        <td>/movies/[title]</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>
+          A JSON object holding data about a single movie, containing a
+          description, genre, dirctor
+        </td>
+      </tr>
+      <tr>
+        <td>Return data about a genre(description) by title</td>
+        <td>/movies/genre/[Name]</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about a genre</td>
+      </tr>
+      <tr>
+        <td>Return data about a director</td>
+        <td>/movies/directors/[Name]</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding a single director's data</td>
+      </tr>
+      <tr>
+        <td>Allow new users to register</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>
+          A JSON object holding data about a user to add: <br />
+          { <br />"Username": "mannjaiswal", <br />"FirstName": "Mann",
+          <br />"LastName": "Jaiswal", <br />"Password": "careerfoundry",
+          <br />"Email": "mannjaiswal5@gmail.com" <br />}
+        </td>
+        <td>
+          A JSON object holding data about a user that was added, including an
+          ID: <br />
+          { <br />
+          "id": "3"<br />"Username": "mannjaiswal", <br />"FirstName": "Mann",
+          <br />"LastName": "Jaiswal", <br />"Password": "careerfoundry",
+          <br />"Email": "mannjaiswal5@gmail.com" <br />}
+        </td>
+      </tr>
+      <tr>
+        <td>Allow users to update their username</td>
+        <td>/users/[username]</td>
+        <td>PUT</td>
+        <td>None</td>
+        <td>A text message indicating the user's username was updated</td>
+      </tr>
+      <tr>
+        <td>Allow users to add a movie to their favorites list</td>
+        <td>/users/[username]/favorites/[movieID]</td>
+        <td>POST</td>
+        <td>None</td>
+        <td>
+          A JSON object holding data about the movie was added to your favorites
+          list
+        </td>
+      </tr>
+      <tr>
+        <td>Allow users to remove a movie from their favorites list</td>
+        <td>/users/[username]/favories/[movieID]</td>
+        <td>DELETE</td>
+        <td>None</td>
+        <td>
+          A text message indicating that the movie was removed from the
+          favorites list
+        </td>
+      </tr>
+      <tr>
+        <td>Allow existing users to deregister</td>
+        <td>/user/[username]/deregister</td>
+        <td>DELETE</td>
+        <td>None</td>
+        <td>A text message indicating that the user has been deregistered</td>
+      </tr>
+    </table>
   </body>
 </html>

@@ -8,7 +8,7 @@ app.use(morgan("common"));
 app.use(express.static("public"));
 
 // JSON data object for movies
-let topSuspenseMovies = [
+let movies = [
   {
     title: "Zodiac",
     director: "David Fincher",
@@ -78,12 +78,58 @@ app.get("/", (req, res) => {
   );
 });
 
+//GET Documentation
 app.get("/documentation", (req, res) => {
   res.sendFile("public/documentation.html", { root: __dirname });
 });
 
+//GET movies list
 app.get("/movies", (req, res) => {
-  res.json(topSuspenseMovies);
+  res.json(movies);
+});
+
+// GET movies by title
+app.get("/movies/:title", (req, res) => {
+  res.json(
+    movies.find((movie) => {
+      return movie.title === req.params.title;
+    })
+  );
+});
+
+// GET genre data
+app.get("/movies/genre/:name", (req, res) => {
+  res.send("Successful GET request returning data on movies by their genre");
+});
+
+//GET director's info
+app.get("/movies/directors/:name", (req, res) => {
+  res.send("Successful GET request returning director's info");
+});
+
+//POST new users
+app.post("/users", (req, res) => {
+  res.send("Successfully added a new user into the database");
+});
+
+//PUT existing user
+app.put("/users/:username", (req, res) => {
+  res.send("Successfully updated the username");
+});
+
+//POST a favorite movie
+app.get("/users/:username/favorites/:movieID", (req, res) => {
+  res.send("movie was successfully added to the favorites list");
+});
+
+//DELETE a movie from favorites
+app.delete("/users/:username/favorites/:movieID", (req, res) => {
+  res.send("Movie was deleted from the list");
+});
+
+//DELETE a user(deregister)
+app.delete("/users/:username", (req, res) => {
+  res.send("User successfully deregistered");
 });
 
 //error handling
