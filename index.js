@@ -4,8 +4,6 @@ const Models = require("./models.js");
 
 const Movies = Models.Movie;
 const Users = Models.User;
-const Genres = Models.Genre;
-const Directors = Models.Director;
 
 const express = require("express"),
   morgan = require("morgan"),
@@ -62,21 +60,21 @@ app.get("/movies/:Title", (req, res) => {
 
 // GET all genres
 app.get("/genre", (req, res) => {
-  Genres.find()
-    .then((genre) => {
-      res.status(200).json(genre);
+  Movies.distinct("Genre")
+    .then((movies) => {
+      res.status(200).json(movies);
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).sned("Error: " + err);
+      res.status(500).send("Error: " + err);
     });
 });
 
 //GET a genre by Name
 app.get("/genre/:Name", (req, res) => {
-  Genres.findOne({ Name: req.params.Name })
-    .then((genre) => {
-      res.json(genre);
+  Movies.findOne({ "Genre.Name": req.params.Name })
+    .then((movie) => {
+      res.json(movie.Genre);
     })
     .catch((err) => {
       console.error(err);
@@ -86,9 +84,9 @@ app.get("/genre/:Name", (req, res) => {
 
 //GET director's info
 app.get("/directors", (req, res) => {
-  Directors.find()
-    .then((director) => {
-      res.status(200).json(director);
+  Movies.distinct("Director")
+    .then((movies) => {
+      res.status(200).json(movies);
     })
     .catch((err) => {
       console.error(err);
@@ -98,9 +96,9 @@ app.get("/directors", (req, res) => {
 
 // GET director's info by name
 app.get("/directors/:Name", (req, res) => {
-  Directors.findOne({ Name: req.params.Name })
-    .then((director) => {
-      res.json(director);
+  Movies.findOne({ "Director.Name": req.params.Name })
+    .then((movie) => {
+      res.json(movie.Director);
     })
     .catch((err) => {
       console.error(err);
