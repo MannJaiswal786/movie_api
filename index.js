@@ -11,7 +11,13 @@ const express = require("express"),
   bodyParser = require("body-parser");
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/myFlixDB", {
+/*mongoose.connect("mongodb://localhost:27017/myFlixDB", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+*/
+
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -335,5 +341,5 @@ app.use((err, req, res, next) => {
 // listen for requests
 const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
-  console.log("Listening on Post " + port);
+  console.log("Listening on Port " + port);
 });
