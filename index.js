@@ -38,7 +38,7 @@ require("./passport");
 //GET requests
 app.get("/", (req, res) => {
   res.send(
-    "Hello! Welcome to myFlix where you will find information about the top 10 best suspense/thriller movies"
+    "Hello! Welcome to myFlix where you will find information about the top 10 best movies"
   );
 });
 
